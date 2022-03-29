@@ -5,29 +5,51 @@ import (
 	"fmt"
 	"html/template"
 	"log"
+	"myGoApp/pkg/config"
+	"myGoApp/pkg/models"
 	"net/http"
 	"path/filepath"
 )
 
 var functions = template.FuncMap{}
 
+var app *config.AppConfig
+
+// NewTemplates sets the config for the template packaage
+func NewTemplates(a *config.AppConfig) {
+	app = a
+}
+
+func AddDefaultData(td *models.TemplateData) *models.TemplateData {
+
+	return td
+}
+
 // RenderTemplate renders a template
-func RenderTemplate(w http.ResponseWriter, html string) {
-	tc, err := CreateTemplateCache()
-	if err != nil {
-		log.Fatal(err)
+func RenderTemplate(w http.ResponseWriter, html string, td *models.TemplateData) {
+
+	var tc map[string]*template.Template
+
+	if app.UseCache {
+		tc = app.TemplateCache
+	} else {
+		tc, _ = CreateTemplateCache()
 	}
+
+	// tc := app.TemplateCache
 
 	t, ok := tc[html]
 	if !ok {
-		log.Fatal(err)
+		log.Fatal("could not get a template from template cache")
 	}
 
 	buf := new(bytes.Buffer)
 
-	_ = t.Execute(buf, nil)
+	td = AddDefaultData(td)
 
-	_, err = buf.WriteTo(w)
+	_ = t.Execute(buf, td)
+
+	_, err := buf.WriteTo(w)
 	if err != nil {
 		fmt.Println("error writing template to browser", err)
 	}

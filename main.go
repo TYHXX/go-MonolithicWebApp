@@ -20,9 +20,15 @@ func main() {
 		log.Fatal("can't create template cache")
 	}
 	app.TemplateCache = tc
+	app.UseCache = false
 
-	http.HandleFunc("/", handerls.Home)
-	http.HandleFunc("/about", handerls.About)
+	repo := handerls.NewRepo(&app)
+	handerls.NewHandlers(repo)
+
+	render.NewTemplates(&app)
+
+	http.HandleFunc("/", handerls.Repo.Home)
+	http.HandleFunc("/about", handerls.Repo.About)
 	// http.HandleFunc("/divide", Divide)
 	fmt.Println(fmt.Sprintf("Starting appliaction on port %s", portNumber))
 
