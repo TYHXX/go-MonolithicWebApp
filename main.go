@@ -27,12 +27,20 @@ func main() {
 
 	render.NewTemplates(&app)
 
-	http.HandleFunc("/", handerls.Repo.Home)
-	http.HandleFunc("/about", handerls.Repo.About)
+	// http.HandleFunc("/", handerls.Repo.Home)
+	// http.HandleFunc("/about", handerls.Repo.About)
 	// http.HandleFunc("/divide", Divide)
 	fmt.Println(fmt.Sprintf("Starting appliaction on port %s", portNumber))
 
-	http.ListenAndServe(portNumber, nil)
+	// http.ListenAndServe(portNumber, nil)
+
+	srv := &http.Server{
+		Addr:    portNumber,
+		Handler: routes(&app),
+	}
+
+	err = srv.ListenAndServe()
+	log.Fatal((err))
 }
 
 func addValue(x, y int) int {

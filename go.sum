@@ -4,6 +4,8 @@ github.com/alecthomas/units v0.0.0-20210208195552-ff826a37aa15 h1:AUNCr9CiJuwrRY
 github.com/alecthomas/units v0.0.0-20210208195552-ff826a37aa15/go.mod h1:OMCwj8VM1Kc9e19TLln2VL61YJF0x1XFtfdL4JdbSyE=
 github.com/bmatcuk/doublestar v1.3.4 h1:gPypJ5xD31uhX6Tf54sDPUOBXTqKH4c9aPY66CyQrS0=
 github.com/bmatcuk/doublestar v1.3.4/go.mod h1:wiQtGV+rzVYxB7WIlirSN++5HPtPlXEo9MEoZQC/PmE=
+github.com/bmizerany/pat v0.0.0-20210406213842-e4b6760bdd6f h1:gOO/tNZMjjvTKZWpY7YnXC72ULNLErRtp94LountVE8=
+github.com/bmizerany/pat v0.0.0-20210406213842-e4b6760bdd6f/go.mod h1:8rLXio+WjiTceGBHIoTvn60HIbs7Hm7bcHjyrSqYB9c=
 github.com/cortesi/modd v0.0.0-20211215124449-6083f9d1c171 h1:98e1gAoSIM4p3WCHpfQ1qjOcun7LBQ0VWIr9IjDkDRI=
 github.com/cortesi/modd v0.0.0-20211215124449-6083f9d1c171/go.mod h1:WgVcz6/4WJwygF7In33TF8u5yu3SOSpO957IEu0SQ0g=
 github.com/cortesi/moddwatch v0.0.0-20210222043437-a6aaad86a36e h1:vNbhR09qtq9ELJgvhAWng4zl/4CVTPBPVev3R8MlUYc=
