@@ -5,14 +5,22 @@ import (
 	handerls "myGoApp/pkg/handlers"
 	"net/http"
 
-	"github.com/bmizerany/pat"
+	"github.com/go-chi/chi/v5"
+	"github.com/go-chi/chi/v5/middleware"
 )
 
 func routes(app *config.AppConfig) http.Handler {
-	mux := pat.New()
+	// mux := pat.New()
 
-	mux.Get("/", http.HandlerFunc(handerls.Repo.Home))
-	mux.Get("/about", http.HandlerFunc(handerls.Repo.About))
+	// mux.Get("/", http.HandlerFunc(handerls.Repo.Home))
+	// mux.Get("/about", http.HandlerFunc(handerls.Repo.About))
+
+	mux := chi.NewRouter()
+
+	mux.Use(middleware.Recoverer)
+
+	mux.Get("/", handerls.Repo.Home)
+	mux.Get("/about", handerls.Repo.About)
 
 	return mux
 
